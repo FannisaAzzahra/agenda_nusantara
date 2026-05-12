@@ -32,8 +32,16 @@ Halaman ini digunakan untuk masuk ke aplikasi menggunakan akun bawaan atau passw
 Beranda menampilkan ringkasan tugas, grafik progres, dan tombol navigasi ke fitur utama.
 
 <p align="center">
-	<img src="assets/ss/home.png" alt="Home Screen" width="280">
+	<img src="assets/ss/home-1.png" alt="Home Screen Bagian Atas" width="280">
 </p>
+
+Bagian atas beranda menampilkan sapaan, ringkasan tugas, dan grafik progres.
+
+<p align="center">
+	<img src="assets/ss/home-2.png" alt="Home Screen Bagian Bawah" width="280">
+</p>
+
+Bagian bawah beranda menampilkan tombol navigasi ke fitur utama.
 
 ### Tambah Tugas Penting
 
