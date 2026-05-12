@@ -10,11 +10,11 @@ class TaskListScreen extends StatefulWidget {
 }
 
 class _TaskListScreenState extends State<TaskListScreen> {
-  List<Task> _tasks = [];
+  List<Task> _tasks = [];  // tempat menyimpan daftar tugas
   bool _isLoading = true;
 
   @override
-  void initState() {
+  void initState() { // ambil data tugas saat halaman dibuka
     super.initState();
     _loadTasks();
   }
@@ -27,8 +27,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
     });
   }
 
-  Future<void> _toggleTask(Task task) async {
-    final newStatus = task.isCompleted == 0;
+  Future<void> _toggleTask(Task task) async { // kalau user klik checkbox
+    final newStatus = task.isCompleted == 0; // balikkan (0 → 1 / 1 → 0)
     await DatabaseHelper.instance.toggleTaskComplete(task.id!, newStatus);
     _loadTasks();
   }
@@ -64,14 +64,67 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   ),
                 )
               : ListView.builder(
-                  padding: const EdgeInsets.all(16),
-                  itemCount: _tasks.length,
-                  itemBuilder: (context, index) {
-                    final task = _tasks[index];
-                    final isPenting = task.category == 'penting';
-                    final isCompleted = task.isCompleted == 1;
+                padding: const EdgeInsets.all(16),
+                itemCount: _tasks.length,
+                itemBuilder: (context, index) {
+                  final task = _tasks[index];
+                  final isPenting = task.category == 'penting';
+                  final isCompleted = task.isCompleted == 1;
 
-                    return Container(
+                  return Dismissible(
+                    key: Key(task.id.toString()),
+                    direction: DismissDirection.endToStart, // ← swipe kiri
+                    background: Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.red[700],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.only(right: 20),
+                      child: const Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                    ),
+                    confirmDismiss: (direction) async {
+                      // ← muncul dialog konfirmasi dulu
+                      return await showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Hapus Tugas'),
+                          content: Text('Yakin ingin menghapus "${task.title}"?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false), // ← batal
+                              child: const Text('Batal'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, true), // ← hapus
+                              child: const Text(
+                                'Hapus',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    onDismissed: (direction) {
+                      // ← dipanggil setelah konfirmasi "Hapus"
+                      DatabaseHelper.instance.deleteTask(task.id!);
+                      setState(() {
+                        _tasks.removeAt(index);
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('"${task.title}" berhasil dihapus'),
+                          backgroundColor: Colors.red[700],
+                        ),
+                      );
+                    },
+                    child: Container(
                       margin: const EdgeInsets.only(bottom: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -106,8 +159,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                                   : Colors.transparent,
                             ),
                             child: isCompleted
-                                ? const Icon(Icons.check,
-                                    color: Colors.white, size: 16)
+                                ? const Icon(Icons.check, color: Colors.white, size: 16)
                                 : null,
                           ),
                         ),
@@ -124,10 +176,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                         ),
                         subtitle: Text(
                           '${task.dueDate} · ${isPenting ? "Penting" : "Biasa"}',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[500],
-                          ),
+                          style: TextStyle(fontSize: 12, color: Colors.grey[500]),
                         ),
                         trailing: Icon(
                           Icons.play_arrow,
@@ -137,9 +186,10 @@ class _TaskListScreenState extends State<TaskListScreen> {
                         ),
                         onTap: () => _toggleTask(task),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
+              )
     );
   }
 }

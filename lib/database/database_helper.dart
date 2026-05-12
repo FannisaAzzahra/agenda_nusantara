@@ -49,6 +49,7 @@ class DatabaseHelper {
 
   // ========== USER ==========
 
+  // Mengambil data user dari database (hanya ada 1 user)
   Future<Map<String, dynamic>?> getUser() async {
     final db = await database;
     final result = await db.query('user', limit: 1);
@@ -56,6 +57,7 @@ class DatabaseHelper {
     return null;
   }
 
+  // Memeriksa kecocokan username dan password dengan database
   Future<bool> checkLogin(String username, String password) async {
     final db = await database;
     final result = await db.query(
@@ -66,6 +68,7 @@ class DatabaseHelper {
     return result.isNotEmpty;
   }
 
+  // Mengecek kecocokan password lama sebelum mengganti password
   Future<bool> checkPassword(String password) async {
     final db = await database;
     final result = await db.query(
@@ -76,6 +79,7 @@ class DatabaseHelper {
     return result.isNotEmpty;
   }
 
+  // Mengganti password lama dengan password baru di database
   Future<void> updatePassword(String newPassword) async {
     final db = await database;
     await db.update('user', {'password': newPassword});
@@ -83,17 +87,20 @@ class DatabaseHelper {
 
   // ========== TASKS ==========
 
+  // Menyimpan tugas baru ke database
   Future<int> insertTask(Task task) async {
     final db = await database;
     return await db.insert('tasks', task.toMap());
   }
 
+  // Mengambil semua tugas dari database
   Future<List<Task>> getAllTasks() async {
     final db = await database;
     final result = await db.query('tasks', orderBy: 'id DESC');
     return result.map((map) => Task.fromMap(map)).toList();
   }
 
+  // Menghitung jumlah tugas yang selesai
   Future<int> countCompleted() async {
     final db = await database;
     final result = await db.rawQuery(
@@ -101,6 +108,7 @@ class DatabaseHelper {
     );
     return Sqflite.firstIntValue(result) ?? 0;
   }
+
 
   Future<int> countIncomplete() async {
     final db = await database;
@@ -110,6 +118,7 @@ class DatabaseHelper {
     return Sqflite.firstIntValue(result) ?? 0;
   }
 
+  // Mengubah status tugas (selesai/belum) dan menyimpan tanggal selesai jika selesai
   Future<void> toggleTaskComplete(int id, bool isCompleted) async {
     final db = await database;
     final today = DateTime.now().toIso8601String().substring(0, 10);
@@ -119,6 +128,15 @@ class DatabaseHelper {
         'isCompleted': isCompleted ? 1 : 0,
         'completedDate': isCompleted ? today : '',
       },
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<void> deleteTask(int id) async {
+    final db = await database;
+    await db.delete(
+      'tasks',
       where: 'id = ?',
       whereArgs: [id],
     );
@@ -135,6 +153,7 @@ class DatabaseHelper {
       ORDER BY completedDate ASC
     ''');
 
+    // Menyimpan hasilnya. Key = tanggal (String), Value = jumlah tugas (int)
     Map<String, int> data = {};
     for (var row in result) {
       data[row['completedDate'] as String] = row['count'] as int;

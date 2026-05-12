@@ -25,16 +25,16 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     setState(() {
-      _isLoading = true;
-      _errorMessage = '';
+      _isLoading = true; // loading spinner
+      _errorMessage = ''; // hapus pesan error lama kalau ada
     });
 
     final isValid = await DatabaseHelper.instance.checkLogin(username, password);
 
-    setState(() => _isLoading = false);
+    setState(() => _isLoading = false); // matikan loading spinner
 
     if (isValid) {
-      if (!mounted) return;
+      if (!mounted) return; //Kalau halaman login sudah ditutup/dihapus, jangan pindah halaman.
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const HomeScreen()),
@@ -50,18 +50,18 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: SingleChildScrollView( // keyboard muncul, bisa di-scroll
+            padding: const EdgeInsets.symmetric(horizontal: 32), // kiri-kanan
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo
-                Container(
+                Container( // kotak gambar/logo/icon
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
                     color: const Color(0xFF4A7C6F),
-                    borderRadius: BorderRadius.circular(22),
+                    borderRadius: BorderRadius.circular(22), //membulat
                   ),
                   child: const Icon(
                     Icons.check_box_outlined,
@@ -69,11 +69,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     size: 60,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 20), // enter antar baris
 
                 // Nama Aplikasi
                 const Text(
-                  'Agenda Nusantara',
+                  'Agenda Nusantaraaa',
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Field Username
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.centerLeft, // rata kiri
                   child: Text(
                     'USERNAME',
                     style: TextStyle(
@@ -102,10 +102,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 6),
                 TextField(
-                  controller: _usernameController,
+                  controller: _usernameController, // isi yang diketik disimpan di controller
                   decoration: InputDecoration(
                     hintText: 'user',
-                    border: OutlineInputBorder(
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder( // garis tepi
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Colors.grey[300]!),
                     ),
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Colors.grey[300]!),
                     ),
-                    contentPadding: const EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric( // jarak dalam textfield
                       horizontal: 16,
                       vertical: 14,
                     ),
@@ -140,6 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: '••••',
+                    hintStyle: const TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Colors.grey[300]!),
@@ -168,9 +170,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: ElevatedButton(
+                  child: ElevatedButton( // tombol yang bisa ditekan
                     onPressed: _isLoading ? null : _login,
-                    style: ElevatedButton.styleFrom(
+                    style: ElevatedButton.styleFrom( 
                       backgroundColor: const Color(0xFF4A7C6F),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),

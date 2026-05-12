@@ -9,11 +9,11 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final _currentPasswordController = TextEditingController();
-  final _newPasswordController = TextEditingController();
+  final _currentPasswordController = TextEditingController();  // menyimpan password
+  final _newPasswordController = TextEditingController(); // menyimpan password baru  
   bool _isSaving = false;
   String _message = '';
-  bool _isSuccess = false;
+  bool _isSuccess = false; // true = pesan sukses, false = pesan error
 
   Future<void> _savePassword() async {
     final currentPassword = _currentPasswordController.text.trim();
@@ -91,6 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               obscureText: true,
               decoration: InputDecoration(
                 hintText: '••••',
+                hintStyle: const TextStyle(color: Colors.grey),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(color: Colors.grey[300]!),
@@ -115,6 +116,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               obscureText: true,
               decoration: InputDecoration(
                 hintText: '••••••••',
+                hintStyle: const TextStyle(color: Colors.grey),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(color: Colors.grey[300]!),
@@ -194,14 +196,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Row(
                 children: [
                   // Avatar / Foto
+                  // CircleAvatar(
+                  //   radius: 30,
+                  //   backgroundColor: const Color(0xFF4A7C6F).withOpacity(0.15),
+                  //   child: const Icon(
+                  //     Icons.person,
+                  //     size: 32,
+                  //     color: Color(0xFF4A7C6F),
+                  //   ),
+                  // ),
                   CircleAvatar(
                     radius: 30,
-                    backgroundColor: const Color(0xFF4A7C6F).withOpacity(0.15),
-                    child: const Icon(
-                      Icons.person,
-                      size: 32,
-                      color: Color(0xFF4A7C6F),
-                    ),
+                    backgroundImage: AssetImage('assets/foto.jpg'),
                   ),
                   const SizedBox(width: 16),
                   // Info Developer
@@ -209,8 +215,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        // ⬇️ GANTI DENGAN NAMA KAMU
-                        '[Nama Mahasiswa]',
+                        'Fannisa Azzahra',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -219,8 +224,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        // ⬇️ GANTI DENGAN NIM KAMU
-                        'NIM: [XXXXXXXXXX]',
+                        'NIM: 2241760102',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],

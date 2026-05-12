@@ -54,6 +54,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
   }
 
+  // simpan tugas ke database
   Future<void> _saveTask() async {
     final title = _titleController.text.trim();
     if (title.isEmpty) {
@@ -76,7 +77,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
     setState(() => _isSaving = false);
 
-    if (!mounted) return;
+    if (!mounted) return; //kalau halaman sudah ditutup, stop
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Tugas berhasil disimpan!'),
@@ -230,9 +231,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
 }
 
-class _FieldLabel extends StatelessWidget {
+class _FieldLabel extends StatelessWidget {  // tidak berubah (PENGATURAN)
   final String text;
-  const _FieldLabel({required this.text});
+  const _FieldLabel({required this.text}); //wajib isi
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart'; // format tanggal
 import 'package:fl_chart/fl_chart.dart';
 import '../database/database_helper.dart';
 import 'add_task_screen.dart';
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadData(); // ambil data
   }
 
   Future<void> _loadData() async {
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  String _getTodayString() {
+  String _getTodayString() { // tgl today
     final now = DateTime.now();
     final formatter = DateFormat('EEEE, d MMMM yyyy', 'id_ID');
     return formatter.format(now);
@@ -44,8 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<BarChartGroupData> _buildChartGroups() {
     final now = DateTime.now();
     List<BarChartGroupData> groups = [];
-    for (int i = 6; i >= 0; i--) {
-      final day = now.subtract(Duration(days: i));
+    for (int i = 6; i >= 0; i--) { // 7 iterasi untuk 7 hari
+      final day = now.subtract(Duration(days: i)); // mundur i hari dari hari ini
       final key = day.toIso8601String().substring(0, 10);
       final count = _chartData[key] ?? 0;
       groups.add(
@@ -279,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _NavButton(
                     label: 'Pengaturan',
                     icon: Icons.settings,
-                    color: const Color(0xFF6D4C41),
+                    color: const Color(0xFF424242),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -351,7 +351,7 @@ class _StatCard extends StatelessWidget {
   }
 }
 
-class _NavButton extends StatelessWidget {
+class _NavButton extends StatelessWidget { // tombol navigasi
   final String label;
   final IconData icon;
   final Color color;
