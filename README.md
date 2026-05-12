@@ -17,37 +17,54 @@ Agenda Nusantara adalah aplikasi Flutter untuk mengelola tugas harian secara lok
 
 ## Screenshot Aplikasi
 
-Screenshot aplikasi:
+Berikut beberapa tampilan utama aplikasi beserta fungsinya.
 
-- `assets/ss/login.png` untuk layar login.
-- `assets/ss/home.png` untuk beranda.
-- `assets/ss/add-task-penting.png` untuk form tambah tugas penting.
-- `assets/ss/add-task-biasa.png` untuk form tambah tugas biasa.
-- `assets/ss/task-list.png` untuk daftar tugas.
-- `assets/ss/settings.png` untuk halaman pengaturan.
+### Login
+
+Halaman ini digunakan untuk masuk ke aplikasi menggunakan akun bawaan atau password yang sudah diubah.
 
 <p align="center">
-	<img src="assets/ss/login.png" alt="Login Screen" width="320">
+	<img src="assets/ss/login.png" alt="Login Screen" width="280">
 </p>
 
-<p align="center">
-	<img src="assets/ss/home.png" alt="Home Screen" width="320">
-</p>
+### Beranda
+
+Beranda menampilkan ringkasan tugas, grafik progres, dan tombol navigasi ke fitur utama.
 
 <p align="center">
-	<img src="assets/ss/add-task-penting.png" alt="Add Task Penting" width="320">
+	<img src="assets/ss/home.png" alt="Home Screen" width="280">
 </p>
 
-<p align="center">
-	<img src="assets/ss/add-task-biasa.png" alt="Add Task Biasa" width="320">
-</p>
+### Tambah Tugas Penting
+
+Form ini dipakai untuk membuat tugas dengan prioritas penting.
 
 <p align="center">
-	<img src="assets/ss/task-list.png" alt="Task List Screen" width="320">
+	<img src="assets/ss/add-task-penting.png" alt="Add Task Penting" width="280">
 </p>
 
+### Tambah Tugas Biasa
+
+Form ini dipakai untuk membuat tugas kategori biasa.
+
 <p align="center">
-	<img src="assets/ss/settings.png" alt="Settings Screen" width="320">
+	<img src="assets/ss/add-task-biasa.png" alt="Add Task Biasa" width="280">
+</p>
+
+### Daftar Tugas
+
+Halaman ini menampilkan seluruh tugas, status selesai, serta opsi hapus dengan swipe.
+
+<p align="center">
+	<img src="assets/ss/task-list.png" alt="Task List Screen" width="280">
+</p>
+
+### Pengaturan
+
+Di halaman ini pengguna dapat mengganti password dan melihat informasi developer.
+
+<p align="center">
+	<img src="assets/ss/settings.png" alt="Settings Screen" width="280">
 </p>
 
 ## Teknologi yang Dipakai
