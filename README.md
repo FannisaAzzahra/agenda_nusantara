@@ -15,6 +15,29 @@ Agenda Nusantara adalah aplikasi Flutter untuk mengelola tugas harian secara lok
 - Mengganti password akun dari menu pengaturan.
 - Menampilkan profil developer pada halaman pengaturan.
 
+## Screenshot Aplikasi
+
+Screenshot aplikasi:
+
+- `assets/ss/login.png` untuk layar login.
+- `assets/ss/home.png` untuk beranda.
+- `assets/ss/add-task-penting.png` untuk form tambah tugas penting.
+- `assets/ss/add-task-biasa.png` untuk form tambah tugas biasa.
+- `assets/ss/task-list.png` untuk daftar tugas.
+- `assets/ss/settings.png` untuk halaman pengaturan.
+
+![Login Screen](assets/ss/login.png)
+
+![Home Screen](assets/ss/home.png)
+
+![Add Task Penting](assets/ss/add-task-penting.png)
+
+![Add Task Biasa](assets/ss/add-task-biasa.png)
+
+![Task List Screen](assets/ss/task-list.png)
+
+![Settings Screen](assets/ss/settings.png)
+
 ## Teknologi yang Dipakai
 
 - Flutter
