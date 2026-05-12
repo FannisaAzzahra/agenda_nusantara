@@ -26,17 +26,29 @@ Screenshot aplikasi:
 - `assets/ss/task-list.png` untuk daftar tugas.
 - `assets/ss/settings.png` untuk halaman pengaturan.
 
-![Login Screen](assets/ss/login.png)
+<p align="center">
+	<img src="assets/ss/login.png" alt="Login Screen" width="320">
+</p>
 
-![Home Screen](assets/ss/home.png)
+<p align="center">
+	<img src="assets/ss/home.png" alt="Home Screen" width="320">
+</p>
 
-![Add Task Penting](assets/ss/add-task-penting.png)
+<p align="center">
+	<img src="assets/ss/add-task-penting.png" alt="Add Task Penting" width="320">
+</p>
 
-![Add Task Biasa](assets/ss/add-task-biasa.png)
+<p align="center">
+	<img src="assets/ss/add-task-biasa.png" alt="Add Task Biasa" width="320">
+</p>
 
-![Task List Screen](assets/ss/task-list.png)
+<p align="center">
+	<img src="assets/ss/task-list.png" alt="Task List Screen" width="320">
+</p>
 
-![Settings Screen](assets/ss/settings.png)
+<p align="center">
+	<img src="assets/ss/settings.png" alt="Settings Screen" width="320">
+</p>
 
 ## Teknologi yang Dipakai
 
